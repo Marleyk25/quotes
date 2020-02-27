@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hello</h1>
+    {{quoteinfo}}
+    <form action="/editquote/{{quoteinfo.id}}" method="POST">
+        {% csrf_token %}
+    <div>
+        <div> quotedBy: <input type="text" name ="form_byedit" id=""></div>
+        <div> quoteDesc: <input type="text" name ="form_descedit" id=""></div>
+        <p> <input type="submit" value="submit"></p>
+    </div>
+</body>
+</html>

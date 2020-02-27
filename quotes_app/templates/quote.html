@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="/logout">Logout</a>
+    <!-- <h1>place holder for quotes!</h1> -->
+    {% if messages %}
+    {% for message in messages %}
+    <p>{{message}}</p>
+    {% endfor %}
+    {% endif %}
+
+    <div>
+        <h1>All Quotes</h1>
+        <div>
+            {% for qobj in allquote %}
+            <p>Quoted By:{{qobj.quotedBy}}</p>
+            <p>Quote Desciption:{{qobj.quoteDesc}}</p>
+            <p>Posted By:<a href ="/user/{{qobj.postedBy.id}}">{{qobj.postedBy.firstName}}</a></p>
+            <p><a href="favquote/{{qobj.id}}">Fav It </a></p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div>
+        <H1>fav Quotes</H1>
+        <!-- {{myfavquote}} -->
+        <div>
+            {% for favqobj in myfavquote %}
+            <p>Quoted By:{{favqobj.quotedBy}}</p>
+            <p>Quote Desciption:{{favqobj.quoteDesc}}</p>
+            <p>Posted By:<a href ="/user/{{favqobj.postedBy.id}}">{{favqobj.postedBy.firstName}}</a></p>
+            <p><a href="removefav/{{favqobj.id}}">Remove From Favorites </a></p>
+        
+            {% endfor %}
+        </div>
+        <p></p>
+
+    </div>
+
+    <form action="/addquote" method="POST">
+            {% csrf_token %}
+        <div>
+            <div> quotedBy: <input type="text" name ="form_by" id=""></div>
+            <div> quoteDesc: <input type="text" name ="form_desc" id=""></div>
+            <p> <input type="submit" value="submit"></p>
+        </div>
+</body>
+</html>
